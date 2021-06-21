@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <%- include('../partials/stylesheet'); %>
+</head>
+
+<body>
+
+    <%- include('../partials/viewMessages'); %>
+
+    <%- include('../partials/header'); %>
+
+    <div class="container">
+        <!-- Profile card -->
+        <div class="card text-center">
+            <div class="card-header">
+                <%= title %>
+                <% if(userFollowed == null){%>
+                <form action="/followUser/<%=user.id%>" method="post">
+                    <input type="hidden" name="_csrf" value="<%=tokenCsrf%>">
+                    <button type="submit" class="btn btn-primary">Follow!</button>
+                </form>
+                <% }else{ %>
+                <form action="/unfollowUser/<%=user.id%>" method="post">
+                    <input type="hidden" name="_csrf" value="<%=tokenCsrf%>">
+                    <button type="submit" class="btn btn-danger">Unfollow!</button>
+                </form>
+                <%} %>
+            </div>
+            <div class="card-body">
+                <img class="card-img-top" src="<%= avatar %>" alt="Card image cap" style="max-width: 150px;">
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>First Name:</strong> <%= user.firstName %></li>
+                    <li class="list-group-item"><strong>Last Name:</strong> <%= user.lastName %></li>
+                    <li class="list-group-item"><strong>Email:</strong> <%= user.email %></li>
+                </ul>
+            </div>
+        </div>
+        <br>
+
+        <!-- Post card -->
+        <div class="card">
+            <div class="card-header">
+                <strong>Posts</strong>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <%postsList.forEach(function(post) { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <p><strong> <%= post.title %></strong></p> <%= post.text %>
+                        </div>
+                    </li>
+                    <% }); %>
+
+                    <% if(postsList.length == 0){%>
+                    <li class="list-group-item">-- No posts! --</li>
+                    <%} %>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+       
+    <%- include('../partials/javascript'); %>
+    <%- include('../partials/footer'); %>
+        
+</body>
+    
+
+</html>

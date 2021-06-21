@@ -1,0 +1,21 @@
+<!-- View (Info - Error) Messages -->
+<div class="container">
+    <% if (infoMessage.length > 0) { %>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <%= infoMessage[0] %>
+    </div>
+    <% } %>
+
+    <% if (errorMessage.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Ohps!</strong> <%= errorMessage[0] %>
+    </div>
+    <% } %>
+</div>
+<!--  -->

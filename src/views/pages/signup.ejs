@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <%- include('../partials/stylesheet'); %>
+</head>
+
+<body>
+
+    <%- include('../partials/viewMessages'); %>
+
+    <div class="container">
+
+        <form action="/users" method="post">
+            <input type="hidden" name="_csrf" value="<%=tokenCsrf%>">
+            <h2>New user</h2>
+            <div class="form-group">
+                <label for="userName">Username</label>
+                <input type="text" value="<%=user.userName%>" class="form-control" id="userName" name="userName"
+                    placeholder="Enter a username" required="">
+            </div>
+            <div class="form-group">
+                <label for="firstName">First name</label>
+                <input type="text" value="<%=user.firstName%>" class="form-control" id="firstName" name="firstName"
+                    placeholder="Enter your first name" required="" style="text-transform:capitalize">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last name</label>
+                <input type="text" value="<%=user.lastName%>" class="form-control" id="lastName" name="lastName"
+                    placeholder="Enter your last name" required="" style="text-transform:capitalize">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" value="<%=user.email%>" class="form-control" id="email" name="email"
+                    aria-describedby="emailHelp" placeholder="Enter your email" required="">
+            </div>
+            <div class="form-group">
+                <label for="pwdHash">New password</label>
+                <input type="password" class="form-control" id="pwdHash" name="pwdHash" placeholder="New password"
+                    required="">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign up!</button>
+            <br>
+            <br>
+            <p>Have An Account? <a href="/login">Login</a></p>
+        </form>
+    </div>
+
+    <%- include('../partials/footer'); %>
+    <%- include('../partials/javascript'); %>
+</body>
+
+</html>

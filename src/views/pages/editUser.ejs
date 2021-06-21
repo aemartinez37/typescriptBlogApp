@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <%- include('../partials/stylesheet'); %>
+</head>
+
+<body>
+
+    <%- include('../partials/viewMessages'); %>
+
+    <%- include('../partials/header'); %>
+
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-header">
+                <%= title %>
+                <form action="/userDelete/<%=user.id%>" method="post">
+                    <input type="hidden" name="_csrf" value="<%=tokenCsrf%>">
+                    <button type="submit" class="btn btn-danger">Delete account</button>
+                </form>
+            </div>
+            <div class="card-body">
+                <img class="card-img-top" src="<%= avatar %>" alt="Card image cap" style="max-width: 150px;">
+
+                <form action="/users/<%=user.id%>" method="post" style="text-align: left;">
+                    <input type="hidden" name="_csrf" value="<%=tokenCsrf%>">
+                    <h2>Edit user</h2>
+                    <div class="form-group">
+                        <label for="userName">Username</label>
+                        <input type="text" value="<%=user.userName%>" class="form-control" id="userName" name="userName"
+                            placeholder="Enter a username" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">First name</label>
+                        <input type="text" value="<%=user.firstName%>" class="form-control" id="firstName"
+                            name="firstName" placeholder="Enter your first name" required=""
+                            style="text-transform:capitalize">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last name</label>
+                        <input type="text" value="<%=user.lastName%>" class="form-control" id="lastName" name="lastName"
+                            placeholder="Enter your last name" required="" style="text-transform:capitalize">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" value="<%=user.email%>" class="form-control" id="email" name="email"
+                            aria-describedby="emailHelp" placeholder="Enter your email" required="">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <br>
+                </form>
+
+            </div>
+            <div class="card-footer text-muted">
+                <a href="/profile" class="btn btn-default">Forguet it!</a>
+            </div>
+        </div>
+    </div>
+       
+    <%- include('../partials/footer'); %>
+    <%- include('../partials/javascript'); %>
+        
+</body>
+    
+
+</html>

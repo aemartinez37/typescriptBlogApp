@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <%- include('../partials/stylesheet'); %>
+</head>
+
+<body>
+
+    <%- include('../partials/viewMessages'); %>
+
+    <div class="container">
+        <form action="/login" method="post">
+            <input type="hidden" name="_csrf" value="<%=tokenCsrf%>">
+            <h2>Welcome - Sign in</h2>
+            <div class="form-group">
+                <label for="usernameEmail">Username or email</label>
+                <input type="text" class="form-control" id="usernameEmail" name="usernameEmail"
+                    placeholder="Enter username or email" required="">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                    required="">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+            <br>
+            <br>
+            <p>Don't have an account? <a href="/signup">Signup</a></p>
+        </form>
+    </div>
+
+    <%- include('../partials/footer'); %>
+    <%- include('../partials/javascript'); %>
+</body>
+
+</html>

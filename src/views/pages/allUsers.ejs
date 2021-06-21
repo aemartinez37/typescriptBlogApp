@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <%- include('../partials/stylesheet'); %>
+</head>
+
+<body>
+
+    <%- include('../partials/viewMessages'); %>
+
+    <%- include('../partials/header'); %>
+
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-header">
+                <%= title %>
+            </div>
+            <div class="card-body">
+
+                <div style="text-align: left;">
+                    <h4>List users: </h4>
+                    <a class="btn btn-primary" href="/allUsers/alphabetically">
+                        Order alphabetically by name (last name in capital letters)
+                    </a>
+                    <a class="btn btn-primary" href="/allUsers/abcNames">
+                        Show the users whose name start with "a", "b" and "c"
+                    </a>
+
+                    <br>
+                    <br>
+                </div>
+
+                <table id="dtUsers" class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th data-field="avatar" data-formatter="avatarFormatter">Avatar</th>
+                            <th data-field="firstName">First Name</th>
+                            <th data-field="lastName">Last Name</th>
+                            <th data-field="email">Email</th>
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/javascript'); %>
+
+    <script>
+        var dtUsersString = '<%- JSON.stringify(usersList) %>';
+        $(document).ready(function () {
+            var dtUsers = JSON.parse(dtUsersString);
+            $('#dtUsers').bootstrapTable({
+                data: dtUsers,
+                pagination: true,
+                pageSize: '3',
+            });
+            $('#dtUsers').bootstrapTable('load', dtUsers);
+        });
+
+        function avatarFormatter(value, row) {
+            return '<div style="max-width: 100px; margin: auto;"><img src = "' + value +
+                '" alt = "' + row.userName + '" style = "max-width: 70px;"><span><a href="/profile/user/' +
+                row.id + '">@' + row.userName + '</a></span></div>';
+        }
+
+    </script>
+       
+    <%- include('../partials/footer'); %>
+        
+</body>
+    
+
+</html>
